@@ -4,7 +4,7 @@ Adds additional tools to the official jenkins docker.
 
 i.e. Jenkins Docker building Dockers
 
-* [docker.io](https://docs.docker.com/installation/debian/)
+* [docker.io 1.5.0 build a8a31ef](https://docs.docker.com/installation/debian/)
 
 # quick start
 
