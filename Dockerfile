@@ -12,9 +12,9 @@ USER root
 
 RUN apt-get update \
  && apt-get install -y docker.io \
+ && wget -O- https://get.docker.com/ | sh \
+ && usermod -G docker jenkins \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN wget -O- https://get.docker.com/ | sh
 
 USER jenkins
