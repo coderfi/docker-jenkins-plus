@@ -15,4 +15,6 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN wget -O- https://get.docker.com/ | sh
+
 USER jenkins
