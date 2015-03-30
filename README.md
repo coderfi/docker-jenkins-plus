@@ -2,6 +2,8 @@
 
 Adds additional tools to the official jenkins docker.
 
+i.e. Jenkins Docker building Dockers
+
 * [docker.io](https://docs.docker.com/installation/debian/)
 
 # quick start
@@ -50,10 +52,10 @@ As you can see from the `Dockerfile`, we add the `jenkins` user to the `docker` 
 
 Unfortunately, the docker's `docker` group is not the same as the host's `docker` group.
 
-So, what we do is hack the docker's `docker` group id to match the host's `docker` group, by means of
-allow the `DOCKER_GID` environment variable.
+So, what we do is hack the docker's `docker` group id to match the host's `docker` group id,
+which is specified by the `DOCKER_GID` environment variable.
 
-Problem solved! Now I can deploy a Jenkins master inside a docker container on my CoreOS installation,
-and use Jenkins as part of my Continuous Integration strategy building other dockers. :)
+Problem solved!
 
-
+Now I can deploy a Jenkins master node running inside a docker container on my CoreOS installation,
+and use Jenkins as part of my Continuous Integration strategy building other dockers.
