@@ -12,7 +12,7 @@ Create a Volume Docker
 
 Start Jenkins
 
-    docker run -d --name jenkins -p 50000:50000 -p 8282:8080 -v /var/run/docker.sock:/var/run/docker.sock -v --volumes-from jenkins-data jenkins
+    docker run -d --name jenkins -p 50000:50000 -p 8282:8080 -v /var/run/docker.sock:/var/run/docker.sock -v --volumes-from jenkins-data coderfi/jenkins-plus
 
 # see also
 
