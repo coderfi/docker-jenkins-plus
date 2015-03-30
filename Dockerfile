@@ -11,10 +11,12 @@ MAINTAINER coderfi@gmail.com
 USER root
 
 RUN apt-get update \
- && apt-get install -y docker.io \
+ && apt-get install -y docker.io sudo \
  && wget -O- https://get.docker.com/ | sh \
  && usermod -G docker jenkins \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-USER jenkins
+ADD jenkins-plus.sh /usr/local/bin/jenkins-plus.sh
+RUN chmod a+x /usr/local/bin/jenkins-plus.sh
+ENTRYPOINT ["/usr/local/bin/jenkins-plus.sh"]

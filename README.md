@@ -10,9 +10,12 @@ Create a Volume Docker
 
     docker run --name jenkins-data -v /var/jenkins_home busybox sh -c "mkdir -p /var/jenkins_home; chown 1000:1000 /var/jenkins_home"
 
-Start Jenkins
+Start Jenkins with docker support:
 
-    docker run -d --name jenkins -p 50000:50000 -p 8282:8080 -v /var/run/docker.sock:/var/run/docker.sock --volumes-from jenkins-data coderfi/jenkins-plus
+    docker run -d --name jenkins -p 50000:50000 -e DOCKER_GID=`grep "^docker" /etc/group|cut -d: -f3` -p 8282:8080 -v /var/run/docker.sock:/var/run/docker.sock --volumes-from jenkins-data coderfi/jenkins-plus
+
+The container will set the container's docker group id to the `DOCKER_GID` env. Be sure this matches the host's docker group id, otherwise
+the jenkins process will not have permission to run docker commands!
 
 # see also
 
