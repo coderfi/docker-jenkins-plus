@@ -20,3 +20,8 @@ RUN apt-get update \
 ADD jenkins-plus.sh /usr/local/bin/jenkins-plus.sh
 RUN chmod a+x /usr/local/bin/jenkins-plus.sh
 ENTRYPOINT ["/usr/local/bin/jenkins-plus.sh"]
+
+# DO NOT set `USER jenkins`
+# The jenkins-plus.sh script requires sufficient privileges
+# to change the docker group id at runtime.
+# The script will run the jenkins webserver as the jenkins user (via sudo).
