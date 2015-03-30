@@ -32,3 +32,28 @@ visit http://your_host:8080
 * [Official Jenkins Docker](https://registry.hub.docker.com/_/jenkins/)
 
 * [Official Jenkins Docker Github](https://github.com/cloudbees/jenkins-ci.org-docker)
+
+# about the build
+
+I wanted to build docker images via Jenkins on a CoreOS host OS.
+
+I quickly found the official Jenkins docker to accomplish this, however, I also quickly found out
+that the `docker` package was lacking from this image.
+
+In order to run docker commands, we mount the host's `/var/run/docker.sock` volume.
+
+To run a docker command, the user must either be `root`, or be part of the `docker` group.
+
+The official Jenkins docker sets the default User to be `jenkins`.
+
+As you can see from the `Dockerfile`, we add the `jenkins` user to the `docker` group.
+
+Unfortunately, the docker's `docker` group is not the same as the host's `docker` group.
+
+So, what we do is hack the docker's `docker` group id to match the host's `docker` group, by means of
+allow the `DOCKER_GID` environment variable.
+
+Problem solved! Now I can deploy a Jenkins master inside a docker container on my CoreOS installation,
+and use Jenkins as part of my Continuous Integration strategy building other dockers. :)
+
+
